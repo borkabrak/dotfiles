@@ -1,0 +1,10 @@
+Dotfiles
+==============================
+Portable runtime configuration
+
+This is an attempt to make my 'dotfiles' (i.e., .vimrc, .zshrc) portable
+between environments.  
+
+I want to also include facilities for programatically managing deploying these
+files, as well as fetching them into the repository directory.  I plan to do
+this via `make`.
