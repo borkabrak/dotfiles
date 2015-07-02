@@ -1,6 +1,6 @@
 Dotfiles
 ==============================
-Portable runtime configuration
+Program configurations managed with make.
 
 This is an attempt to make my 'dotfiles' (i.e., .vimrc, .zshrc) portable
 between environments.  
