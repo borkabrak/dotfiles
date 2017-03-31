@@ -4,6 +4,24 @@
 "   Register and configure plugins here
 "
 "
+"   GETTING STARTED WITH VUNDLE:
+"   --------------------------------
+"
+"   1.) The idea is to use vundle to manage all the other vim plugins one
+"   desires.  But to get vundle in the first place, go to/create the folder
+"   '~/.vim/bundle' and run the following command within it:
+"
+"
+"   $ mkdir ~/.vim/bundle
+"   $ git clone 'https://github.com/gmarik/vundle.vim' ~/.vim/bundle
+"
+"   2.) Then initialize all the vundle-managed plugins by opening vim and
+"   running:
+"
+"   :PluginInstall<cr>
+"
+"
+"===============================================================================
 " USEFUL VUNDLE COMMANDS:
 "   :PluginList          - list configured plugins
 "   :PluginInstall(!)    - install (update) plugins
