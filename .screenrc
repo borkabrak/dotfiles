@@ -1,0 +1,46 @@
+# 'screen' configuration
+
+# Set up the status line
+#hardstatus lastline 'GNU Screen: %w' # use the window manager's titlebar
+
+hardstatus alwayslastline '%{kg} @%H %{wb} %-w%{kc}%n*%t%{-}%+w %=%{kG}%C:%s %A %{kg} %D %Y-%m-%d '
+
+
+# Change the command character (that gets screen's attention)
+#   The first character is what the command character will be.
+#   To type the literal character, enter the command character, then the second
+#   character shown here.
+escape `~
+
+# Ignore flow control chars (^q/^s)
+defflow off	
+
+# Default lines of scrollback (remembered lines 'above' the screen) is 100.  That is dumb and wrong.
+defscrollback 10000
+
+vbell on
+vbell_msg "   Wuff  ----  Wuff!!  "
+
+#remove some stupid / dangerous key bindings
+bind ^k
+#bind L
+bind ^\
+#make them better
+bind \\ quit
+bind K kill
+bind I login on
+bind O login off
+bind } history
+
+# My own bindings -jdc
+
+# Blank the screen on space (not sure why.. *shrug*)
+bind ' ' blanker
+
+# Alt+[Left/Right arrow] switches windows
+bindkey ^[[1;3D prev
+bindkey ^[[1;3C next
+
+# Alt-<comma/period> cycle through windows
+bindkey , prev
+bindkey . next
