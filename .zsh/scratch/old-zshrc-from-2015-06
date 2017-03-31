@@ -1,0 +1,219 @@
+#
+# .zshrc
+# Sourced by zsh on LOGIN and INTERACTIVE shells
+
+	#Autoload programmable completion
+	autoload -U compinit
+	compinit -u
+
+	#Makes available a set of default prompts accessible with the 'prompt' command
+	autoload -U promptinit
+	promptinit
+
+	#Use vi mode command line editing
+	setopt vi
+
+        # By default, zsh's vi mode emulates.. vi (not vim).  This means no
+        # multi-level undo/redo.  These lines fix that.
+        #  (WARNING: ^R defaults to 'redisplay'.  Just in case you actually
+        #  need that..)
+        bindkey -a u undo
+        bindkey -a '^R' redo
+
+        # Easier command mode
+        bindkey jj vi-cmd-mode
+        bindkey JJ vi-cmd-mode
+
+        # edit command line in full editor (ESC-v)
+        autoload edit-command-line
+        zle -N edit-command-line
+        bindkey -M vicmd v edit-command-line
+
+	#Don't logout on ^D
+	setopt ignoreeof
+
+	#Don't append duplicate commands to command history
+	setopt histignoredups
+
+	#Type the name of a directory to change into it
+	setopt autocd
+
+	#To see the directory stack, type 'dirs -v'
+	#To go to the 'n'th directory, type '~n'
+	#Push directory onto directory stack when you change into it
+	setopt autopushd
+
+	#Don't push consecutive duplicate directories onto the stack
+	setopt pushdignoredups
+
+	#Save space on completion lists by printing variable-width columns
+	setopt listpacked
+
+	#In completion lists, matches are listed across and then down, instead of vice versa
+	setopt listrowsfirst 
+
+	#Use trailing symbols identifying the type of each file
+	#('/' => directory, '*' => executable, etc.)
+	#setopt nolisttypes
+
+	#Don't store the 'history' command itself in the history
+	setopt histnostore
+
+	#When invoking a command from the history, display it first without executing it
+	setopt histverify
+
+	#Try to correct the spelling of commands
+	# setopt correct
+
+	#Try to correct the spelling of all arguments in a line
+	#setopt correctall	
+
+	#List jobs in the long format by default
+	setopt longlistjobs
+
+	#Report the status of background jobs immediately, instead of waiting until
+	# just before printing a prompt
+	setopt notify
+
+	#Allow double apostrophes to be replaced with a single apostrophe within an apostrophe quoted string	
+	setopt rcquotes
+
+	#Do not require a leading '.' in a filename to be matched explicitly
+	setopt globdots
+
+	#Add a slash instead of a space when autocompleting a directory name
+	setopt auto_param_slash
+
+# STANDARD OPTIONS TO COMMANDS
+##############################
+
+    # cf. bin/ss
+    #alias ss='byobu-screen'
+    # alias ss='tmux attach || tmux'  # replaced with a bin file
+
+    alias tree='tree -C'
+    alias tmux='tmux -2'
+    alias hh='history'
+    #alias c='cat' # make seeing files easier
+    alias x='exit'
+    alias ls='ls -h --color=auto'
+    alias ll="ls -l"
+    alias L="ls -L"
+    alias LL="ls -lL"
+    alias rot13="tr a-zA-Z n-za-mN-ZA-M"
+    alias r="fc -s"	#Repeat last command
+
+    # Okay, printing the date does NOT require perl.. leaving this here to
+    # remind myself I don't always pick the best way to do things.
+    # alias datestamp='perl -e "use POSIX;print strftime(qq(%D),localtime).qq(\n)"' #Write current mm/dd/yyyy
+    # alias datestamp='date +"%m/%e/%Y"'
+     
+    # The one-and-only correct, definitive way to express the date (According
+    # to [http://xkcd.com/1179/]): 
+    alias datestamp='date +%F'
+
+    alias less='less -iR'
+    alias l='ls'
+    alias lisp='clisp -q'
+    alias gg='git status'
+    alias g='git'
+    alias t="task"
+    alias revim="vim -c 'source ~/.vim/shutdown_session.vim'"
+    #alias du='du -h'
+    
+    #What package provides a particular file?
+    alias whatprovides='apt-file search -x'
+    
+	#Don't use '_' as end-of-string marker in xargs
+    #   (What?  Don't see that in the man page..)
+	# alias xargs='xargs -e' 
+
+    # Default is to run once even if stdin is empty.  Don't do that.
+    alias xargs='xargs -r'
+
+
+	# For easier left-hand typing, use CapsLock to make the left half of the keyboard a 'mirror' of the right half. 
+	# More info at [http://blag.xkcd.com/2007/08/14/mirrorboard-a-one-handed-keyboard-layout-for-the-lazy/]
+	alias mirrorboard='xkbcomp ~/bin/mirrorboard.xkb $DISPLAY 2>/dev/null'
+
+	# Wise cow
+	alias cowfortune='fortune -a | cowsay -n'
+
+	alias e='vim'
+	#alias nethack='telnet nethack.alt.org'
+	alias a2r='sudo apache2ctl restart'	#Quick Apache restart
+	alias suso='ssh jcarter@jcarter.suso.org'	#Connect to suso, properly
+	alias cd..='cd ..'
+  alias path='echo $PATH'
+
+  # Test internet
+  alias pingle='ping 8.8.8.8' # Google's DNS server
+  alias pp='ping 8.8.8.8'
+  alias p='pp'
+
+	#Be careful with dangerous commands
+	alias mv='mv -i'
+	alias cp='cp -i'
+	alias rm='rm -I' # capital 'I' is a bit less intrusive
+
+  alias tm='tmux attach || tmux'
+
+# A script that uses vim as a man pager, instead of less 
+# (cf. $LESSOPEN and source-highlight, but that doesn't seem to do man pages)
+# alias man='man --pager=/home/jon/bin/manpager'
+
+# This makes zsh completion aware of newly installed programs without restarting
+alias repath='export PATH=$PATH'
+
+# For fun
+alias please='sudo'
+alias dammit,='sudo'
+alias xyzzy='echo Nothing happens'
+alias rtfm='man'
+alias grep="grep --color"
+
+# Open thing (this eclipses /bin/open, which doesn't seem to work (or be
+# useful) in the terminal, anyway)
+alias open='xdg-open'
+
+# Fire up SASS to automatically generate css on the fly
+alias sassify='sass --watch --sourcemap=none --scss'
+
+[[ -f ~/.zprompt ]] && source ~/.zprompt
+
+# functions 
+####################
+
+[[ -f ~/.zfunctions ]] && source ~/.zfunctions
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+######################
+## Useful/fun commands
+#
+## Show just directories with `ls`
+# ls -d */
+
+PERL_MB_OPT="--install_base \"/home/jon/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/jon/perl5"; export PERL_MM_OPT;
+
+alias scheme48="rlwrap scheme48"
+alias s9="rlwrap s9"
+
+# Reliable because local?
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip'
+
+###  named directories ###
+hash -d htdocs=/home/jon/htdocs
+hash -d javascript=/usr/share/javascript
+hash -d torrent=~/downloads/torrent
+hash -d write=~/documents/write
+hash -d music=~/music
+
+# Use rlwrap with node, to get vi bindings
+# TODO: How do I keep node's syntax highlighting?
+# alias node='env NODE_NO_READLINE=1 rlwrap -pGreen -A -S "node >>> " node'
+
+# Show the last few jots
+#jot

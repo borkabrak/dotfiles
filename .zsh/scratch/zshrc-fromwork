@@ -1,0 +1,136 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _oldlist _expand _complete
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' ignore-parents parent pwd
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' match-original both
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' original true
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*' substitute 1
+zstyle ':completion:*' verbose true
+zstyle :compinstall filename '/home/jon/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd extendedglob notify
+unsetopt appendhistory beep nomatch
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+
+# BEGINNING OF HAND-PORT OF WORK SETTINGS -jdc
+# STANDARD OPTIONS TO COMMANDS
+##############################
+
+EDITOR=vim
+
+# cf. bin/ss
+#alias ss='byobu-screen'
+alias tmux='tmux -2 -u'
+alias ss='tmux attach || tmux'  # replaced with a bin file
+
+alias tree='tree -C'
+alias hh='history'
+#alias c='cat' # make seeing files easier
+alias x='exit'
+alias ls='ls -h --color=auto'
+alias ll="ls -l"
+alias L="ls -L"
+alias LL="ls -lL"
+alias rot13="tr a-zA-Z n-za-mN-ZA-M"
+alias r="fc -s"	#Repeat last command
+
+# Okay, printing the date does NOT require perl.. leaving this here to
+# remind myself I don't always pick the best way to do things.
+#alias datestamp='perl -e "use POSIX;print strftime(qq(%D),localtime).qq(\n)"' #Write current mm/dd/yyyy
+alias datestamp='date +"%Y-%m-%e"'
+
+alias less='less -iR'
+alias l='ls'
+alias lisp='clisp -q'
+alias gg='git status'
+alias g='git'
+alias t="task"
+alias revim="vim -c 'source ~/.vim/shutdown_session.vim'"
+#alias du='du -h'
+alias bc='bc -l'    # Load the math library when using the command-line calculator
+
+#What package provides a particular file?
+alias whatprovides='apt-file search -x'
+
+#Don't use '_' as end-of-string marker in xargs
+#   (What?  Don't see that in the man page..)
+# alias xargs='xargs -e' 
+
+# Default is to run once even if stdin is empty.  Don't do that.
+alias xargs='xargs -r'
+
+# For easier left-hand typing, use CapsLock to make the left half of the keyboard a 'mirror' of the right half. 
+# More info at [http://blag.xkcd.com/2007/08/14/mirrorboard-a-one-handed-keyboard-layout-for-the-lazy/]
+alias mirrorboard='xkbcomp ~/bin/mirrorboard.xkb $DISPLAY 2>/dev/null'
+
+# Wise cow
+alias cowfortune='fortune -a | cowsay -n'
+
+alias e='vim'
+#alias nethack='telnet nethack.alt.org'
+alias a2r='sudo apache2ctl restart'	#Quick Apache restart
+alias suso='ssh jcarter@jcarter.suso.org'	#Connect to suso, properly
+alias cd..='cd ..'
+alias path='echo $PATH'
+
+# Test internet
+alias pingle='ping 8.8.8.8' # Google's DNS server
+alias pp='ping 8.8.8.8'
+alias p='pp'
+
+#Be careful with dangerous commands
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -I' # capital 'I' is a bit less intrusive
+
+alias tm='tmux attach || tmux'
+
+# A script that uses vim as a man pager, instead of less 
+# (cf. $LESSOPEN and source-highlight, but that doesn't seem to do man pages)
+# alias man='man --pager=/home/jon/bin/manpager'
+
+# This makes zsh completion aware of newly installed programs without restarting
+alias repath='export PATH=$PATH'
+
+# For fun
+alias please='sudo'
+alias dammit,='sudo'
+alias xyzzy='echo Nothing happens'
+alias rtfm='man'
+alias grep="grep --color"
+
+# Open thing (this eclipses /bin/open, which doesn't seem to work (or be
+# useful) in the terminal, anyway)
+alias open='xdg-open'
+
+# Fire up SASS to automatically generate css on the fly
+alias sassify='sass --watch --sourcemap=none --scss'
+
+# Finally!  NEOVIM!!
+alias vim=nvim
+
+[[ -f ~/.zprompt ]] && source ~/.zprompt
+
+# functions 
+####################
+
+[[ -f ~/.zfunctions ]] && source ~/.zfunctions
