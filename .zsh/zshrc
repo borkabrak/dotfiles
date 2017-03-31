@@ -43,7 +43,7 @@
 #)
 
 # Any files in this directory that have an extension of '.zsh' will be sourced.
-components_directory="/home/jon/.zsh/include"
+components_directory="$HOME/.zsh/include"
 
 autoload colors && colors
 print -n "$fg_bold[white]Sourcing components_directory..$fg_bold[grey]"
